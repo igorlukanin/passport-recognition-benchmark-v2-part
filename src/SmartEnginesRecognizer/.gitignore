@@ -1,0 +1,6 @@
+Debug
+obj
+*.tlog
+*.obj
+*.log
+*.pdb

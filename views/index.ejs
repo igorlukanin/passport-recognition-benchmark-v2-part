@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/style.css">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(function() {
+            // SE
+
+            new google.visualization.Histogram(document.getElementById('se_rows_counts')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_rows_counts) %>), {
+                        title: 'Кол-во найденных полей c уверенностью = 1',
+                        legend: { position: 'none' },
+                        histogram: { bucketSize: 1 }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_avg_confidence')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_avg_confidence) %>), {
+                        title: 'Ср. уверенность',
+                        legend: { position: 'none' },
+                        histogram: { bucketSize: .1 }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_pages')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_pages) %>), {
+                        title: 'Кол-во найденных страниц',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_series')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_series) %>), {
+                        title: 'Ошибки в серии',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_number')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_number) %>), {
+                        title: 'Ошибки в номере',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_surname')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_surname) %>), {
+                        title: 'Ошибки в фамилии',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_name')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_name) %>), {
+                        title: 'Ошибки в имени',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_patronymic')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_patronymic) %>), {
+                        title: 'Ошибки в отчестве',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_date')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_date) %>), {
+                        title: 'Ошибки в дате выдачи',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_authority')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_authority) %>), {
+                        title: 'Ошибки в выдавшем органе',
+                        legend: { position: 'none' },
+                        histogram: { bucketSize: 5 }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_z1')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_z1) %>), {
+                        title: 'Число несовпавших полей',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_z2')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_z2) %>), {
+                        title: 'Число несовпавших полей (без выдавшего органа)',
+                        legend: { position: 'none' }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('se_accuracy_z3')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.se_accuracy_z3) %>), {
+                        title: 'Время распознавания',
+                        legend: { position: 'none' },
+                        histogram: { bucketSize: .1 , lastBucketPercentile: 5 }
+                    });
+
+            // PV
+
+            new google.visualization.Histogram(document.getElementById('pv_rows_counts')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.pv_rows_counts) %>), {
+                        title: 'Найденные поля c любой уверенностью, от 0 до 1',
+                        legend: { position: 'none' },
+                        histogram: { bucketSize: 1 }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('pv_avg_confidence')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.pv_avg_confidence) %>), {
+                        title: 'Ср. уверенность',
+                        legend: { position: 'none' },
+                        histogram: { bucketSize: .1 }
+                    });
+
+            new google.visualization.Histogram(document.getElementById('pv_accuracy_z3')).draw(
+                    google.visualization.arrayToDataTable(<%- JSON.stringify(charts.pv_accuracy_z3) %>), {
+                        title: 'Время распознавания',
+                        legend: { position: 'none' },
+                        histogram: { bucketSize: 50, lastBucketPercentile: 5 }
+                    });
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="pack">
+    <h1>Технологии</h1>
+
+    <div class="se">
+        <h2><a href="http://smartengines.biz/ru/" target="_blank">SmartEngines</a></h2>
+    </div>
+
+    <div class="pv">
+        <h2><a href="http://www.passportvision.ru" target="_blank">PassportVision</a></h2>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<div class="pack">
+    <h1>Паспорта, принятые УЦ</h1>
+    <p><%= stat.counts.all %> сканов, принятых операторами УЦ</p>
+
+    <div class="se">
+        <h2>SmartEngines</h2>
+
+        <p><%= stat.counts.se %> распознаны (найдена 2 или 3 страница паспорта)</p>
+
+        <div class="chart" id="se_rows_counts"></div>
+        <div class="chart" id="se_avg_confidence"></div>
+        <div class="chart" id="se_pages"></div>
+        <div class="chart" id="se_accuracy_series"></div>
+        <div class="chart" id="se_accuracy_number"></div>
+        <div class="chart" id="se_accuracy_surname"></div>
+        <div class="chart" id="se_accuracy_name"></div>
+        <div class="chart" id="se_accuracy_patronymic"></div>
+        <div class="chart" id="se_accuracy_date"></div>
+        <div class="chart" id="se_accuracy_authority"></div>
+        <div class="chart" id="se_accuracy_z1"></div>
+        <div class="chart" id="se_accuracy_z2"></div>
+        <div class="chart" id="se_accuracy_z3"></div>
+    </div>
+
+    <div class="pv">
+        <h2>PassportVision</h2>
+
+        <p><%= stat.counts.pv %> распознаны (найдено 6 и более полей)</p>
+
+        <div class="chart" id="pv_rows_counts"></div>
+        <div class="chart" id="pv_avg_confidence"></div>
+        <div class="chart" id="pv_accuracy_z3"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<div class="pack">
+    <h1>Паспорта, не принятые УЦ</h1>
+    <p>TODO</p>
+</div>
+
+</body>
+
+</html>

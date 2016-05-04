@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,cyrillic);
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14pt;
+    font-weight: 300;
+
+    margin: 2em;
+}
+
+.pack {
+    margin-bottom: 2em;
+}
+
+h1, h2, p {
+    padding: 0 25px;
+}
+
+h1 {
+    font-size: 24pt;
+}
+
+h2 {
+    font-size: 20pt;
+}
+
+p {}
+
+.se, .pv {
+    float: left;
+    width: 50%;
+    padding-bottom: 25px;
+}
+
+.se {
+    background-color: #efe;
+}
+
+.pv {
+    background-color: #eef;
+}
+
+.clear {
+    clear: left;
+}
+
+.chart {
+    width: 100%;
+    height: 400px;
+}
